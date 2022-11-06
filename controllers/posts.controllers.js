@@ -42,7 +42,7 @@ exports.createPost = (req, res, next) => {
         imgUrl: req.postObject.imgUrl,
         UserId: req.auth.userId
     })
-        .then(() => res.status(201).json({ message: 'The post is created !' }))
+        .then((post) => res.status(201).json({ message: 'The post is created !', post: post }))
         .catch(error => res.status(500).json({ error }))
 };
 
@@ -68,7 +68,7 @@ exports.modifyPost = (req, res, next) => {
                     });
                 }
 
-                const postObject = {};
+                const postObject = post[0];
                 postObject.text = req.postObject.text ? req.postObject.text : post[0].text;
                 postObject.imgUrl = req.postObject.imgUrl ? req.postObject.imgUrl : post[0].imgUrl;
 
@@ -78,7 +78,7 @@ exports.modifyPost = (req, res, next) => {
                 }, {
                     where: { id: post[0].id }
                 })
-                    .then(() => res.status(200).json({ message: " Modification of the post successful ! " }))
+                    .then(() => res.status(200).json({ message: " Modification of the post successful ! ", post: postObject }))
                     .catch(error => res.status(500).json({ error }));
             }
         })

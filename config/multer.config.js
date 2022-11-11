@@ -25,12 +25,12 @@ const storage = multer.diskStorage({
 
 /* mise en place d'un filtre*/
 const fileFilter = (req, file, callback) => {
-  if (( MIME_TYPES[file.mimetype] === "jpg") ||
-      ( MIME_TYPES[file.mimetype] === "png") || 
-      ( MIME_TYPES[file.mimetype] === "webp")) {
+  if ((MIME_TYPES[file.mimetype] === "jpg") ||
+    (MIME_TYPES[file.mimetype] === "png") ||
+    (MIME_TYPES[file.mimetype] === "webp")) {
     return callback(null, true);
   }
-  callback(new Error( ' Only image jpg,jpeg,png,webp'));
+  callback(new Error(' Only image jpg,jpeg,png,webp'));
 };
 
-module.exports = multer({storage: storage, fileFilter: fileFilter}).single('image');
+module.exports = multer({ storage: storage, fileFilter: fileFilter }).single('image');

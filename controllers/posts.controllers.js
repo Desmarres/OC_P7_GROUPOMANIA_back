@@ -12,6 +12,16 @@ async function adminAccess(userId) {
         .then(user => { return user[0].adminAccess })
 }
 
+/* récupère les infos de l'utilisateur */
+exports.me = async (req, res, next) => {
+    const admin = await adminAccess(req.auth.userId);
+    const userId = req.auth.userId;
+    res.status(200).json({
+        'userId': userId,
+        'adminAcess': admin
+    });
+}
+
 /* récupère l'ensemble des posts de la BDD */
 exports.getAllPost = (req, res, next) => {
     Post.findAll()

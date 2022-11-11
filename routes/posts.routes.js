@@ -9,6 +9,8 @@ const postCtrl = require('../controllers/posts.controllers');
 /* routage des requêtes */
 router.get('/', postCtrl.getAllPost); // accès au controleur de la requête
 
+router.get('/me', postCtrl.me);
+
 router.get('/order/', postCtrl.getAllPostOrderCreatedDesc); // accès au controleur de la requête
 
 router.get('/:id', validation.idPost, // vérification de la validité de l'id post de l'URL

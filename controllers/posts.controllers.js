@@ -68,7 +68,7 @@ exports.modifyPost = (req, res, next) => {
                 res.status(403).json({ message: " 403: unauthorized request " });
             }
             else {
-                if (req.file) {
+                if (req.file && (post[0].imgUrl !== null)) {
                     /* récupération de l'URL de l'image*/
                     const filename = post[0].imgUrl.split('/images/')[1];
                     /* suppression de l'image dans le dossier*/

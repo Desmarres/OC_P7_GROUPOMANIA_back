@@ -9,6 +9,19 @@ exports.getAuth = (req, res, next) => {
     res.status(200).json('true');
 }
 
+/* récupère les clafs userId - mails */
+exports.mail = (req, res, next) => {
+    User.findAll({
+        attributes: ['id', 'loginMail']
+    })
+        .then(liste => {
+            let reponse = [];
+            liste.map(user => reponse[user.id] = user.loginMail.split('@')[0])
+            res.status(201).json(reponse);
+        })
+        .catch(error => res.status(400).json({ error }));
+
+}
 
 /* enregistrement nouvel utilisateur*/
 exports.signup = (req, res, next) => {

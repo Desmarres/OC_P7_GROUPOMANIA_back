@@ -10,9 +10,9 @@ const port = process.env.DB_PORT || '';
 
 /* connection à la base de donnée MYSQL*/
 const db = new Sequelize({
-    database : database,
-    username : userName,
-    password : password,
+    database: database,
+    username: userName,
+    password: password,
     host: serverName,
     port: port,
     dialect: 'mysql'

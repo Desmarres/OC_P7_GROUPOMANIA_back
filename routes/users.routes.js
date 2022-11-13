@@ -9,6 +9,8 @@ const reqAuth = require('../middleware/req.auth');
 /* routage des requêtes */
 router.get('/', reqAuth, userCtrl.getAuth);
 
+router.get('/mail', reqAuth, userCtrl.mail);
+
 router.post('/signup', userValidation.signup, // vérification des éléments envoyés
     validationResult, // vérification de la présence d'erreur dans les entrées
     userCtrl.signup); // accès au controleur de la requête
